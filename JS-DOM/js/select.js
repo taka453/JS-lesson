@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //.js-item-to-right-all クラスを取得 右に全部移動
   const jsitemTorightAll = document.querySelector('.js-item-to-right-all');
 
-  //=== 右 ===/
+  //=== 右 ===//
   //selected-items IDを取得 選択済セレクトボックス
   const selected = document.getElementById('selected-items');
   //.js-item-to-left クラスを取得 左に移動
