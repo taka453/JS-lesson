@@ -54,15 +54,15 @@ document.addEventListener('DOMContentLoaded', () => {
       //items配列に選択されたitemを追加する。
       if(item.selected === true) {
         items.push(item);
-    }
-    //配列に追加した要素をセレクトボックスにforEachメソッドにて移動させる。
-    items.forEach(function(item) {
-      //toセレクトボックスの末尾に要素を追加
-      to.appendChild(item);
-      //trueをfalseに変更。
-      item.selected = false;
-    });
-    items = [];
+      }
+      //配列に追加した要素をセレクトボックスにforEachメソッドにて移動させる。
+      items.forEach(function(item) {
+        //toセレクトボックスの末尾に要素を追加
+        to.appendChild(item);
+        //trueをfalseに変更。
+        item.selected = false;
+      });
+      items = [];
     }
   }
 
@@ -86,6 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
       //trueをfalseに変更。
       item.selected = false;
     });
-    items = [];
+      items = [];
   }
 }, false);
