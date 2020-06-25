@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //.js-item-to-right-all クラスを取得 右に全部移動
   const jsitemTorightAll = document.querySelector('.js-item-to-right-all');
 
-  //=== 右 ===//
+  //=== 右 ===/
   //selected-items IDを取得 選択済セレクトボックス
   const selected = document.getElementById('selected-items');
   //.js-item-to-left クラスを取得 左に移動
@@ -24,71 +24,68 @@ document.addEventListener('DOMContentLoaded', () => {
   let items = [];
 
   //jsitemTorightボタンがクリックされたらmoveItem関数を宣言
-  jsitemToright.addEventListener('click', function () {
+  jsitemToright.addEventListener('click', () => {
     moveItem(noneSlelected, selected);
   });
 
   //jsitemTorightAllボタンがクリックされたらmoveItemAll関数を宣言
-  jsitemTorightAll.addEventListener('click', function () {
+  jsitemTorightAll.addEventListener('click', () => {
     moveItemAll(noneSlelected, selected);
   });
-
   //jsitemToleftされたらmoveItem関数を宣言
-  jsitemToleft.addEventListener('click', function () {
+  jsitemToleft.addEventListener('click', ()  => {
     moveItem(selected, noneSlelected);
   });
 
   //jsitemToleftAllボタンがクリックされたらmoveItemAll関数を宣言
-  jsitemToleftAll.addEventListener('click', function () {
+  jsitemToleftAll.addEventListener('click', () => {
     moveItemAll(selected, noneSlelected);
   });
 
-  //jsitemTorightがクリックされたら、from = noneSlelected,to = selected
-  //jsitemToleftがクリックされたら、from = selected,to = noneselected
-  function moveItem(from, to) {
-    //fromの配列の長さを取得。違うボックスに移動すると、配列の数が変動する
-    const length = from.length;
-    //ボックス内の数を全部繰り返す
-    for(let i = 0; i < length; i++) {
-      //ボックス内のoption要素を取得
-      const item = from[i];
-      //option要素が選択されていれば、items配列にoption要素を追加し、選択を解除。
-      if(from[i].selected === true) {
+  // //jsitemTorightがクリックされたら、from = noneSlelected,to = selected
+  // //jsitemToleftがクリックされたら、from = selected,to = noneselected
+  const moveItem = (from, to) => {
+    //optionを配列に変換。
+    const options = Array.from(from.querySelectorAll('option'));
+    //ボックス内の配列の数を取得。
+    for(let i = 0; i < options.length; i++) {
+      //option要素をitemに格納。
+      const item = options[i];
+      //items配列に選択されたitemを追加する。
+      if(item.selected === true) {
         items.push(item);
-        from[i].selected = false;
-      }
     }
-
-    //配列に追加した要素をセレクトボックスにmapメソッドにて追加
-    items.map(function(item) {
+    //配列に追加した要素をセレクトボックスにforEachメソッドにて移動させる。
+    items.forEach(function(item) {
       //toセレクトボックスの末尾に要素を追加
       to.appendChild(item);
+      //trueをfalseに変更。
+      item.selected = false;
     });
     items = [];
-    console.log(items);
+    }
   }
 
   //jsitemTorightAllがクリックされたら、from = noneSlelected,to = selected
   //jsitemToleftALLがクリックされたら、from = selected,to = noneselected
   function moveItemAll (from, to) {
-    //fromの配列の長さを取得。違うボックスに移動すると、配列の数が変動する
-    const length = from.length;
-    //ボックス内の数を全部繰り返す
-    for(let i = 0; i < length; i++) {
-      //ボックス内のoption要素を取得
-      const item = from[i];
+    //optionを配列に変換。
+    const options = Array.from(from.querySelectorAll('option'));
+    //ボックス内の配列の数を取得。
+    for(let i = 0; i < options.length; i++) {
+      //option要素を取得
+      const item = options[i];
       //items配列にoption要素を追加。
       items.push(item);
-      from[i].selected = false;
     }
 
-    //配列に追加した要素をセレクトボックスにmapメソッドにて追加
-    items.map(function(item) {
+    //配列に追加した要素をセレクトボックスにforEachメソッドにて移動させる。
+    items.forEach(function(item) {
       //toセレクトボックスの末尾に要素を追加
       to.appendChild(item);
-    })
+      //trueをfalseに変更。
+      item.selected = false;
+    });
     items = [];
-    console.log(items);
   }
-
 }, false);
