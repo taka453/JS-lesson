@@ -8,10 +8,15 @@ document.addEventListener('DOMContentLoaded', function () {
   for(let i = 0; i < smooth.length; i++){
     //デフォルトの動作をキャンセルし、ブラウザ機能を実行しないようにする。
     smooth[i].addEventListener('click', (e)=>{
-      event.preventDefault();
+      e.preventDefault();
       //属性値アンカー(href)の値を取得。
       const href = smooth[i].getAttribute('href');
       // console.log(href);
+      if(document.querySelector(href) !== null) {
+        window.scroll({
+          top: 0
+        });
+      }
       //href要素を取得。
       const link = document.querySelector(href);
       // console.log(link);
@@ -19,13 +24,14 @@ document.addEventListener('DOMContentLoaded', function () {
       const top = link.getBoundingClientRect().top;
       // console.log(top);
       //headerの高さを取得(隙間を一文字文足しておく)
-      const offset = document.querySelector('.navbar').offsetHeight + 16;
+      const offset = document.querySelector('.navbar').offsetHeight;
       // console.log(offset);
       //現在のスクロール値を取得。Y方向にスクロール。
       const currentTop = window.pageYOffset;
       // console.log(currentTop);
+      const defaultFontSize = parseInt(window.getComputedStyle(document.body).fontSize, 16);
       //現在のスクロール値に座標を足して、高さを引いたものを取得。
-      const execution = ((currentTop + top) - offset);
+      const execution = ((currentTop + top) - (offset + defaultFontSize));
       //スクロール実行。
       window.scroll ({
         top: execution,
