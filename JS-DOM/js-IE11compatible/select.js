@@ -10,19 +10,19 @@ document.addEventListener('DOMContentLoaded', function(){
     const noneSelected = document.getElementById('none-selected-items');
     const selected = document.getElementById('selected-items');
 
-    document.querySelector('.js-item-to-right').addEventListener('click', ()=> {
+    document.querySelector('.js-item-to-right').addEventListener('click', function() {
         move(noneSelected, selected, 'option:checked');
     }, false);
 
-    document.querySelector('.js-item-to-right-all').addEventListener('click', ()=> {
+    document.querySelector('.js-item-to-right-all').addEventListener('click', function() {
         move(noneSelected, selected, 'option');
     }, false);
 
-    document.querySelector('.js-item-to-left').addEventListener('click', ()=> {
+    document.querySelector('.js-item-to-left').addEventListener('click', function() {
         move(selected, noneSelected, 'option:checked');
     }, false);
 
-    document.querySelector('.js-item-to-left-all').addEventListener('click', ()=> {
+    document.querySelector('.js-item-to-left-all').addEventListener('click', function() {
         move(selected, noneSelected, 'option');
     }, false);
 }, false);
