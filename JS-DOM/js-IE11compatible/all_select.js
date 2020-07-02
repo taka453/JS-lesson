@@ -2,7 +2,7 @@
 // if文はなるべく使わないように後で混乱する。
 //　一旦コピーして、クリアする
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
 
     const selectAll = document.getElementById('select-all');
     const items = Array.prototype.slice.call(document.getElementsByClassName('js-check'));
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    selectAll.addEventListener('click', event => {
+    selectAll.addEventListener('click', function(event) {
         items.forEach(function(item){item.checked = event.target.checked});
         const checkedItems = items.filter(function(item) {return item.checked === true});
         addItems(checkedItems);
