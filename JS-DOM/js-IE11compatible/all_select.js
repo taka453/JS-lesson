@@ -4,109 +4,42 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-//     const selectAll = document.getElementById('select-all');
-
-//     const items = Array.from(document.getElementsByClassName('js-check'));
-
-//     const itemNames = document.getElementById('selected-items');
-
-//     const addItems = checkedItems => {
-//         itemNames.innerHTML = '';
-//         checkedItems.forEach(checkedItem => {
-//             const cloneItem = checkedItem.parentNode.querySelector('span').cloneNode(true);
-//             itemNames.appendChild(cloneItem);
-//         });
-//     };
-
-//     selectAll.addEventListener('click', event => {
-//         items.forEach(item => item.checked = event.target.checked);
-//         const checkedItems = items.filter(item => item.checked === true);
-//         addItems(checkedItems);
-//     }, false);
-
-//     items.forEach(item => {
-//         item.addEventListener('click', () => {
-//             const checkedItems = items.filter(item => item.checked === true);
-//             addItems(checkedItems);
-
-//             if(items.length === checkedItems.length) {
-//                 selectAll.checked = true;
-//                 selectAll.indeterminate = false;
-//                 return;
-//             }
-//             if(checkedItems.length === 0) {
-//                 selectAll.checked = false;
-//                 selectAll.indeterminate = false;
-//                 return;
-//             }
-//             selectAll.checked = false;
-//             selectAll.indeterminate = true
-//         });
-//     });
-
-    //　エレメントの選択======================================
-    // 全選択のエレメントを取得
     const selectAll = document.getElementById('select-all');
-
-    // 各アイテムのエレメントを取得
-    const items = Array.from(document.getElementsByClassName('js-check'));
-
-    // 選択されたエレメントのアイテム名をセットするエレメントを取得
+    const items = Array.prototype.slice.call(document.getElementsByClassName('js-check'));
     const itemNames = document.getElementById('selected-items');
 
-    // 選択されたアイテムを「選択されたアイテム一覧」に追加
-    const addItems = checkedItems => {
-        // 「選択されたアイテム一覧」をクリア
+    function addItems(checkedItems) {
         itemNames.innerHTML = '';
-
-        checkedItems.forEach(checkedItem => {
-            //　チェックされたアイテムのspanのコピー
+        checkedItems.forEach(function(checkedItem) {
             const cloneItem = checkedItem.parentNode.querySelector('span').cloneNode(true);
-
-            //　コピーを「選択されたアイテム一覧」に追加
             itemNames.appendChild(cloneItem);
         });
-    };
+    }
 
-    //　全選択のクリックイベントをセット
     selectAll.addEventListener('click', event => {
-        //　各アイテムに全選択と同じチェックステートをセット
-        items.forEach(item => item.checked = event.target.checked);
-
-        // チェックされているアイテムを取得
-        const checkedItems= items.filter(item => item.checked === true);
-
-        //　「選択されたアイテム一覧」に追加
+        items.forEach(function(item){item.checked = event.target.checked});
+        const checkedItems = items.filter(function(item) {return item.checked === true});
         addItems(checkedItems);
     }, false);
 
-    //　アイテムのクリックイベントを設定======================
-    items.forEach(item => {
-        // 各アイテム毎にイベントをセット
-        item.addEventListener('click', () => {
-            //　チェックされているアイテムを取得
-            const checkedItems = items.filter(item => item.checked === true);
-
-            // 「選択されたアイテム一覧」に追加
+    items.forEach(function(item) {
+        item.addEventListener('click', function() {
+            const checkedItems = items.filter(function(item){return item.checked === true});
             addItems(checkedItems);
 
-            //　全アイテム数とチェックされているアイテム数が同じ
             if(items.length === checkedItems.length) {
                 selectAll.checked = true;
                 selectAll.indeterminate = false;
                 return;
             }
-
-            // チェックされているアイテムが無い
             if(checkedItems.length === 0) {
                 selectAll.checked = false;
                 selectAll.indeterminate = false;
                 return;
             }
-
-            // 一部がチェックされている
             selectAll.checked = false;
-            selectAll.indeterminate = true;
+            selectAll.indeterminate = true
         });
     });
+
 }, false);
