@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
       //属性値アンカー(href)の値を取得。
       const href = smooth[i].getAttribute('href');
       // console.log(href);
-      if(document.querySelector(href) !== null) {
+      if(document.querySelector('href') !== null) {
         window.scroll({
           top: 0
         });
