@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // modalを閉じる
-    document.querySelector('#js-modal-close').addEventListener('click', () => {
+    document.getElementById('js-modal-close').addEventListener('click', () => {
         // activeクラスを削除
         modal.classList.remove('active');
         mask.classList.remove('active');
@@ -37,6 +37,14 @@ document.addEventListener('DOMContentLoaded', function () {
         modal.style.display = 'none';
     });
 
+     // 背景を押すとモーダルを閉じる
+    window.addEventListener('click', event => {
+        if(event.target === modal) {
+            modal.classList.remove('active');
+            mask.classList.remove('active');
+        };
+    });
+
     // modal内部画面
     button.addEventListener('click', event => {
         const textForm = document.getElementById('text-form').value;
@@ -44,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
             window.alert('何か入力してください');
         } else {
             window.alert(textForm);
+            close();
         }
     });
 }, false);
