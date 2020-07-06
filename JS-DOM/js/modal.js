@@ -20,8 +20,8 @@ document.addEventListener('DOMContentLoaded', function () {
         noScrollBarWidth = body.clientWidth;
         // スクロールバーの長さを計算
         diff = noScrollBarWidth - clientWidth;
-        if(diff > 0) {
-            body.style['padding-right'] = diff + 'px';
+        if(diff > null) {
+            body.style.paddingRight = diff + 'px';
         }
         modal.style.display = 'block';
     });
@@ -33,19 +33,18 @@ document.addEventListener('DOMContentLoaded', function () {
         mask.classList.remove('active');
         // overflow初期化
         body.style.overflow = 'auto';
-        body.style['padding'] = '0';
+        body.style.padding = '0';
         modal.style.display = 'none';
     });
 
     // modal内部画面
     button.addEventListener('click', event => {
-        // #にならないようにする
-        event.preventDefault();
         const textForm = document.getElementById('text-form').value;
         if(textForm === '') {
             window.alert('何か入力してください');
         } else {
             window.alert(textForm);
+            window.close();
         }
     });
 }, false);
